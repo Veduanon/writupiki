@@ -1,0 +1,10 @@
+User-agent: * Disallow: /configs/ Disallow: /backups/ Disallow: /hotdog-database/
+
+
+hotdog-database we get robot_data.db
+
+sqlite online viewer >
+
+hotdogstand:slicedpicklesandonions
+
+sun{5l1c3d_p1cKl35_4nd_0N10N2}

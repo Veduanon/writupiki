@@ -1,0 +1,26 @@
+from pcap get the dialog between hawk1 and hawk2
+hawk2:hey there,how was ur valentines day
+hawk1:It was fire,i wrote a blog on this 172 200 32 81 8080
+hawk2: delete ts bro
+hawk1: sed
+from their dialogue its clear that the blog was deleted, and the ip of blog is 172.200.32.81:8080
+go to wayback machine
+get the saved blog from feb
+
+    <h1>My Day</h1>
+    <p>
+      ngl, today was mad chill. i was vibin' to hatsune miku (the girl from
+      fortnite) and doin' the lil' nod that chopped chin does. then, i was like,
+      "bet, imma cop a crib in egypt," but fr, i forgor what they did for me.
+      later, i downloaded minecraft 2 and was like, "hold up, i've played these
+      games before." after that, to boost my rizz and grind some social credits,
+      i locked in and did 5x30 till i passed out. woke up to see the "o i i a i
+      u i" cat in front of me and started questioning my sanity. maybe all those
+      insta reels were giving me brainrot, but nah, zucc would only do what's
+      best for me. i opened my official hawk tuah phone cover phone and scrolled
+      until i was one with zi-gxorm 6873.
+    </p>
+  </body>
+  <!--Chat is this real? YXBvb3JjdGZ7MW1fZzAxbmdfMW41YW4zfQ-->
+</html>
+flag is apoorctf{1m_g01ng_1n5an3}

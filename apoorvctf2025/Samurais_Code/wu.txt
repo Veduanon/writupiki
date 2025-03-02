@@ -1,0 +1,51 @@
+strings sam.jpg
+at the end of file brainfuck code
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>>++++.++++++++++++..----.+++.<------------.-----------..>---------------.++++++++++++++.---------.+++++++++++++.-----------------.<-.>++.++++++++..--------.+++++.-------.<.>--.++++++++++++.--.<+.>-------.+++.+++.-------.<.>-.<.++.+++++++++++++++++++++++++.+++++++++++++.>+++++++++++++.<+++++++++++++.----------------------------------.++++++++.>+++++++++.-------------------.<+++++++.>+.<-----.+++++++++.------------.<+++++++++++++++.>>++++++++++++++++.<+++.++++++++.>-.<--------.---------.++++++++++++++++++++.>.<++.>--------------.<<+++++.>.>-----.+++++++.<<++.>--.<++.---------.++.>>+++++++++++.-------------.----.++++++++++++++++++.<<++++++++++++++++.>>--.--.---.<<--.>>+++.-----------.-------.+++++++++++++++++.---------.+++++.-------.
+which decodes to https://drive.google.com/file/d/1JWqdBJzgQhLUI-xLTwLCWwYi2Ydk4W6-/view?usp=sharing
+download samurai file
+read hex-values of samurai
+the values are swapped between neighbour values D8 FF E0 FF 10 00 46 4A 46 49 01 00 01 01 48 00 48 00 00 00 DB FF 43 00 01 00
+write script that returns the values in the right position
+#!/usr/bin/env python3
+
+import sys
+
+def swap_neighboring_bytes(filename_in, filename_out):
+    """
+    Read the binary data from filename_in, swap every pair of adjacent bytes,
+    then write the corrected data to filename_out.
+    """
+    with open(filename_in, "rb") as f_in:
+        data = f_in.read()
+    
+    # Ensure the file size is even
+    if len(data) % 2 != 0:
+        raise ValueError("File size must be an even number of bytes to perform correct swapping.")
+    
+    corrected = bytearray()
+    
+    # Swap each pair
+    for i in range(0, len(data), 2):
+        corrected.append(data[i+1])
+        corrected.append(data[i])
+    
+    # Write out the corrected file
+    with open(filename_out, "wb") as f_out:
+        f_out.write(corrected)
+
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: python swap_jpg_bytes.py <swapped_input.jpg> <corrected_output.jpg>")
+        sys.exit(1)
+    
+    swapped_jpg = sys.argv[1]
+    corrected_jpg = sys.argv[2]
+    
+    swap_neighboring_bytes(swapped_jpg, corrected_jpg)
+    print(f"Corrected file written to {corrected_jpg}")
+
+if __name__ == "__main__":
+    main()
+view the repaired file
+
+apoorvctf{ByT3s_OUT_OF_ORd3R}

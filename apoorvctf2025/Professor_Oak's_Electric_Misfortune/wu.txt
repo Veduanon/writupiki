@@ -1,0 +1,2 @@
+strings test
+apoorvctf{P1k4chu_0ch0t0n4_pr1nc3ps}

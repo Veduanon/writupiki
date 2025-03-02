@@ -1,0 +1,4 @@
+unintended solution:
+strings memdump.mem | grep pastebin
+https://pastebin.com/zk0wH7Pj
+apoorvctf{ur1s_n3v3r_1i3}

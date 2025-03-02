@@ -1,0 +1,4 @@
+look for hex Cache0000.bin
+it has header - rdp8bmp
+git clone https://github.com/ANSSI-FR/bmc-tools.git
+python bmc-tools.py -s ../Cache0000.bin -d . -b

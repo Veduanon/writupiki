@@ -1,0 +1,9 @@
+exiftool chall.jpg
+aV9sb3ZlX3Jvc2U= -> i_love_rose
+steghide extract -sf chall.jpg
+flag.txt -> it was not txt, it was wav file but corrupted headers
+repair with 52 49 46 46 
+after it i hear morse code
+
+
+M4G1C BYT3S 1S THE W4Y

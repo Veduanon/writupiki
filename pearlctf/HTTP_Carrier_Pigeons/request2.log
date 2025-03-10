@@ -1,0 +1,17 @@
+GET /echo/?options=option1&secondquery=temp2&thirdquery=temp3&zwhyisthatzthere=temp1 HTTP/1.1
+Host:obfuscated.httpcarrierpigeons.xyz
+User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv%3a135.0) Gecko/20100101 Firefox/135.0
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language:en-US,en;q=0.5
+Cache-Control:no-cache
+Cookie:7b3c-be9f=c710f99acaf1ad1095179453d4ed31093facd836e92d96fa05fdd3eb865517b5
+Dnt:1
+Priority:u=0, i
+Referer:https%3a//obfuscated.httpcarrierpigeons.xyz/?page_id=76
+Sec-Fetch-Dest:document
+Sec-Fetch-Mode:navigate
+Sec-Fetch-Site:same-origin
+Sec-Fetch-User:?1
+Sec-Gpc:1
+Upgrade-Insecure-Requests:1
+Accept-Encoding:gzip

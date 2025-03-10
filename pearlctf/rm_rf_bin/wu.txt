@@ -1,0 +1,2 @@
+author deleted all binaries from /bin
+read line < flag.txt; echo "$line"

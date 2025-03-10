@@ -1,0 +1,3 @@
+pdfdetach -list sentmail.pdf 
+1 embedded files
+1: flag.txt

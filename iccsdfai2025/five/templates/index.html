@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🔒 Secret Vault</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Admin Portal</h1>
+        <p>Enter master password:</p>
+        
+        <div class="form-group">
+            <input type="password" id="password" maxlength="4">
+            <button onclick="submitPassword()">Authenticate</button>
+        </div>
+        
+        <div id="result" class="hidden">
+            <h3>Result:</h3>
+            <pre id="message"></pre>
+        </div>
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+    <script>
+        async function submitPassword() {
+            const password = document.getElementById('password').value;
+            const result = document.getElementById('result');
+            const message = document.getElementById('message');
+            const debug = document.getElementById('debug');
+            
+            const formData = new FormData();
+            formData.append('password', password);
+            formData.append('hash', sha256(password));
+            
+            try {
+                const response = await fetch('/validate', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                message.textContent = data.message;
+                debug.innerHTML = `<strong>Debug:</strong><br>${JSON.stringify(data.debug, null, 2)}`;
+                
+                result.classList.remove('hidden');
+                result.className = data.success ? 'success' : 'error';
+                
+            } catch (err) {
+                message.textContent = "Error connecting to server";
+                debug.textContent = err.message;
+                result.className = 'error';
+                result.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+#fake {
+  opacity: 0; /* Make the paragraph invisible */
+      transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+    }
+
+    #fake:hover {
+      opacity: 1; /* Make it visible when hovered */
+    }

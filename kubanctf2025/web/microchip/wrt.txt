@@ -1,0 +1,6 @@
+it was django-web app. debug=True was, so i spotted all endpoints.
+spotted http://62.173.139.193:16004/api/, and then started to fuzz, found http://62.173.139.193:16004/api/v2/ then http://62.173.139.193:16004/api/v2/ge_users
+found username - jackson and password md5 hash - randy1
+
+logged in http://62.173.139.193:16004/employees_login
+CSC{M1CR0CH1P_53CUR1TY_BRE4CH}

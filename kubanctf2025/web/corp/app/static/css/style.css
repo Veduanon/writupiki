@@ -1,0 +1,107 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background: #2c3e50;
+    padding: 15px 30px;
+}
+
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #1abc9c;
+}
+
+main {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 0.1);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #2c3e50;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="file"] {
+    padding: 12px 15px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline-offset: 2px;
+    transition: border-color 0.3s ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="file"]:focus {
+    border-color: #1abc9c;
+}
+
+.form-container button {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    background: #1abc9c;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-container button:hover {
+    background: #16a085;
+}
+
+.error {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 10px 16px;
+    background: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.upload-btn:hover {
+    background: #1976D2;
+}
+
+.no-files {
+    color: #888;
+    text-align: center;
+    margin-bottom: 20px;
+}
+

@@ -1,0 +1,21 @@
+default task wireshark.
+
+it's called "Файловый трансфер" so look for FTP appearence.
+
+i found transfer of archive.zip, and it was passworded. and using rockyou did not work, so i looked inside of FTP dialog.
+and found password - "7+N42D(Msj9:"
+----
+contents of secure_creds.txt:
+/RteVGJrn
+
+PMkEaBLVfp
+
+
+bruh, i uploaded pcap to https://apackets.com/ and discovered dns request to pastebin.com/
+i think it was guessy
+
+https://apackets.com/RteVGJrn -> password PMkEaBLVfp
+
+
+    CSC{1t_is_jusst_ftp_b4s3}
+

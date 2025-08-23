@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+
+    .post-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      transition: transform 0.2s ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .post-card h3 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #2c3e50;
+      font-weight: 500;
+    }
+
+    .post-card h4 {
+      color: #7f8c8d;
+      margin: 8px 0 20px;
+      font-weight: 400;
+    }
+
+    .post-card p {
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .back-button {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      background-color: #3498db;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Post Detail</h2>
+
+    <div id="postDetail"></div>
+
+    <a href="posts.html" class="back-button">← Back to Posts</a>
+  </div>
+
+
+  <script src="js/auth.js"></script>
+  <script>
+    async function getPostDetail() {
+      const token = localStorage.getItem('token');
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+
+      if (!postId) {
+        alert('Post ID not found in the URL.');
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/posts/${postId}?token=${token}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to load post');
+        }
+
+
+        console.log(data)
+
+        const postDetailContainer = document.getElementById('postDetail');
+        postDetailContainer.innerHTML = `
+          <div class="post-card">
+            <h3>${data.title}</h3>
+            <h4>${data.subtitle}</h4>
+            <p>${data.content}</p>
+          </div>
+        `;
+      } catch (error) {
+        alert('Error loading post: ' + error.message);
+        console.error(error);
+      }
+    }
+
+    window.onload = getPostDetail;
+  </script>
+</body>
+
+</html>

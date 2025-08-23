@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="display-4">Welcome to the Airport Pass Office</h1>
+    <p class="lead">Manage your airport pass applications with ease.</p>
+    {% if 'username' in session %}
+        <p>Hello, <strong>{{ session['username'] }}</strong>!</p>
+        <a href="{{ url_for('apply') }}" class="btn btn-primary btn-lg">Apply for a Pass</a>
+    {% else %}
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Login</a>
+        <a href="{{ url_for('register') }}" class="btn btn-secondary btn-lg">Register</a>
+    {% endif %}
+</div>
+{% endblock %}

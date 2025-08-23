@@ -1,0 +1,15 @@
+we got mft table.
+
+MFT table - is like symlink for actual file system NTFS.
+MFT stores important information about file names, metadatas, atributes and, importantly, the file data itself, if it is small (resident data).
+
+Every file and directory on NTFS represented as record in MFT (FILE0 record), where there can be links to clusters disks (non-resident), and the real content (resident).
+
+the idea of task is to find that resident data.
+
+i did all ctf methods related to windows disks etc, and none of them came to success, even strings task.mft | grep CSC{ :)
+
+but then i googled for "mft ctf", and i found Eric Zimmermans tool called MFTExplorer. Its gui tool for exploring MFT table.
+so i started to crawling all directories, but unfortunatelly nothing worked out. so i stoped, and thought that, flag should be somewhere where user will type something :D, and flag needs to stay in table. 
+so i went to this path C:\Users\trager\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+and eventually i found hex encoded flag "43 53 43 7B 6D 34 73 74 65 72 5F 66 31 6C 65 5F 74 34 62 6C 65 5F 70 34 73 73 65 64 7D" -> CSC{m4ster_f1le_t4ble_p4ssed}

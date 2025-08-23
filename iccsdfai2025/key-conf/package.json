@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "json-web-token": "^3.0.0",
+    "sqlite3": "^5.1.7"
+  }
+}

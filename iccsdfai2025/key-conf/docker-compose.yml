@@ -1,0 +1,201 @@
+version: '3.8'
+
+services:
+  projectsekai:
+    build: .
+    ports:
+      - "33400:33400"
+    environment:
+      - PORT=33400
+    volumes:
+      - db-data-1:/app
+    networks:
+      - app-network-1
+
+  drovosec:
+    build: .
+    ports:
+      - "33477:33477"
+    environment:
+      - PORT=33477
+    volumes:
+      - db-data-2:/app
+    networks:
+      - app-network-2
+
+  cr4sh:
+    build: .
+    ports:
+      - "34345:34345"
+    environment:
+      - PORT=34345
+    volumes:
+      - db-data-3:/app
+    networks:
+      - app-network-3
+
+  mimicats:
+    build: .
+    ports:
+      - "34467:34467"
+    environment:
+      - PORT=34467
+    volumes:
+      - db-data-4:/app
+    networks:
+      - app-network-4
+
+  fsociety:
+    build: .
+    ports:
+      - "34753:34753"
+    environment:
+      - PORT=34753
+    volumes:
+      - db-data-5:/app
+    networks:
+      - app-network-5
+
+  zerotrustx:
+    build: .
+    ports:
+      - "34632:34632"
+    environment:
+      - PORT=34632
+    volumes:
+      - db-data-6:/app
+    networks:
+      - app-network-6
+
+  arystech:
+    build: .
+    ports:
+      - "35335:35335"
+    environment:
+      - PORT=35335
+    volumes:
+      - db-data-7:/app
+    networks:
+      - app-network-7
+
+  c1cada:
+    build: .
+    ports:
+      - "35163:35163"
+    environment:
+      - PORT=35163
+    volumes:
+      - db-data-8:/app
+    networks:
+      - app-network-8
+
+  cyb3rp0l:
+    build: .
+    ports:
+      - "35264:35264"
+    environment:
+      - PORT=35264
+    volumes:
+      - db-data-9:/app
+    networks:
+      - app-network-9
+
+  systemofpwn:
+    build: .
+    ports:
+      - "35644:35644"
+    environment:
+      - PORT=35644
+    volumes:
+      - db-data-10:/app
+    networks:
+      - app-network-10
+
+  dtl:
+    build: .
+    ports:
+      - "36242:36242"
+    environment:
+      - PORT=36242
+    volumes:
+      - db-data-11:/app
+    networks:
+      - app-network-11
+
+  em1x:
+    build: .
+    ports:
+      - "36542:36542"
+    environment:
+      - PORT=36542
+    volumes:
+      - db-data-12:/app
+    networks:
+      - app-network-12
+
+  yourshellnotpass:
+    build: .
+    ports:
+      - "36753:36753"
+    environment:
+      - PORT=36753
+    volumes:
+      - db-data-13:/app
+    networks:
+      - app-network-13
+
+  unkowns:
+    build: .
+    ports:
+      - "37253:37253"
+    environment:
+      - PORT=37253
+    volumes:
+      - db-data-14:/app
+    networks:
+      - app-network-14
+
+  inovateam:
+    build: .
+    ports:
+      - "37553:37553"
+    environment:
+      - PORT=37553
+    volumes:
+      - db-data-15:/app
+    networks:
+      - app-network-15
+
+volumes:
+  db-data-1:
+  db-data-2:
+  db-data-3:
+  db-data-4:
+  db-data-5:
+  db-data-6:
+  db-data-7:
+  db-data-8:
+  db-data-9:
+  db-data-10:
+  db-data-11:
+  db-data-12:
+  db-data-13:
+  db-data-14:
+  db-data-15:
+
+networks:
+  app-network-1:
+  app-network-2:
+  app-network-3:
+  app-network-4:
+  app-network-5:
+  app-network-6:
+  app-network-7:
+  app-network-8:
+  app-network-9:
+  app-network-10:
+  app-network-11:
+  app-network-12:
+  app-network-13:
+  app-network-14:
+  app-network-15:

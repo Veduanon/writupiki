@@ -1,0 +1,1 @@
+console.log('Anime themed CTF challenge loaded');

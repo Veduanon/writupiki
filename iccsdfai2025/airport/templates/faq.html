@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+        <!-- Question 1 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    What is this application for?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <p>This application allows users to submit their documents for verification. Once approved, you will receive clearance to proceed with your flight.</p>
+                    <p><em>Note:</em> Only valid documents with proper authorization will be accepted.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Why do pancakes always taste better with syrup?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <p>While this question may seem unrelated, the answer lies in chemistry: syrup adds moisture and enhances flavor. </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Why was my application rejected?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <p>Applications may be rejected if the uploaded document is missing required information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    How does the system process my document?
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <p>The system processes your document by analyzing its content using advanced algorithms and techniques to extract blah blah blah. Nahh just kidding, actually i don't know cause our developer recently passed away, he was about 80 years old. RIP</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Why do cats always land on their feet?
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <p>Cats have a unique reflex called the "righting reflex," which allows them to orient their bodies mid-air. While this is impressive, it won't help you :D</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Can I upload any type of file?
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <p>Only specific file types are supported, including PNG, JPG, JPEG.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    Where can I find detailed instructions?
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <p>You can download the detailed instructions from the link below:</p>
+                    <a href="{{ url_for('static', filename='instructions.pdf') }}" download>Download Instructions</a>
+                </div>
+            </div>
+        </div>
+	        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNine">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    What’s so special about triangles?
+                </button>
+            </h2>
+            <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+		   <p>Once upon a time, in the land of Geometry, the <strong>triangle</strong> stood as the strongest and most reliable shape, 
+            supporting bridges and mountains with its unbreakable symmetry, while the <strong>square</strong>, with its perfect balance, 
+            tiled the world in neat patterns; together, they ventured into the third dimension, where the <strong>parallelepiped</strong> 
+            stretched and slanted to form crystals, and the <strong>cone</strong> spun tales of ice cream and frustums, all under the 
+            watchful gaze of the <strong>cube</strong>, a Platonic solid that rolled dice to decide fate—yet whispers echoed among the 
+            shapes of something greater, something beyond their grasp, the enigmatic tesseract, a portal to the 
+            fourth dimension, holding secrets that could unlock infinite possibilities, hinting to all who dared to dream that the 
+            tesseract was the key to unraveling the universe's deepest mysteries, while the <strong>hexagon</strong> 
+            humbly buzzed in nature’s beehives, and the <strong>flag</strong>, a symbol of unity, waved proudly above, urging all to follow 
+            the path toward the extraordinary truth hidden within the tesseract.</p>
+                </div>
+            </div>
+        </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            If a pineapple could talk, what would it say to a coconut?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>"You’ve got a hard shell, but I’ve got the crown—let’s rule this fruit salad together!"</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Question 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Why did the spreadsheet go broke?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Because it lost all its cells in a formula feud and couldn’t count on anyone for help!</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Question 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            What do you call a penguin that tells knock-knock jokes in Antarctica?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>A chilly comedian—but watch out, his punchlines are ice-cold!</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Question 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            If time travel were real, why would toast always come back from the future burnt?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Because the future is full of toasted opportunities, and someone has to pay the price for breakfast karma!</p>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+{% endblock %}

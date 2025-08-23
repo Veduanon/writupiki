@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-container">
+    <h2 class="welcome">Welcome, {{ user.username }}</h2>
+    <div class="files-section">
+        <h3>Your Files</h3>
+        {% if files %}
+            <ul class="file-list">
+                {% for file in files %}
+                <li class="file-item">
+                    <span class="file-name">{{ file.filename }}</span>
+                    <a class="download-btn" href="{{ url_for('download_file', file_id=file.file_id) }}">Download</a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-files">You don't have any uploaded files yet.</p>
+        {% endif %}
+        <a class="upload-btn" href="{{ url_for('upload') }}">Upload New File</a>
+    </div>
+</div>
+{% endblock %}

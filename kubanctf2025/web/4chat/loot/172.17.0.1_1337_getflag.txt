@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>4Chat Login</title>
+<link rel="stylesheet" href="/static/style.css" />
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #000;
+  color: #0f0;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#terminal {
+  width: 600px;
+  height: 300px;
+  border: 1px solid #0f0;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  outline: none;
+}
+#input-line {
+  display: flex;
+  align-items: center;
+}
+#prompt {
+  flex-shrink: 0;
+}
+#command-input {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  color: #0f0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  outline: none;
+}
+</style>
+</head>
+<body>
+<div id="terminal" tabindex="0">
+Welcome to 4Chat
+Type commands to login or register:
+/login [USERNAME] [PASSWORD]
+/register [USERNAME] [PASSWORD] [CONFIRM_PASSWORD]
+
+
+<form id="command-form" method="POST" action="/login">
+  <div id="input-line" style="display: flex; align-items: baseline;">
+    <span id="prompt">4chat $ </span>
+    <input type="text" name="command" id="command-input" autocomplete="off" autofocus spellcheck="false" style="background:none; border:none; color:#0f0; font-family: 'Courier New', monospace; font-size: 16px; outline:none; margin:0; padding:0;" />
+  </div>
+</form>
+
+</div>
+
+<script>
+const form = document.getElementById("command-form");
+const input = document.getElementById("command-input");
+const terminal = document.getElementById("terminal");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  let cmd = input.value.trim();
+  if(!cmd) return;
+  let response = document.createElement("div");
+  response.textContent = "/login $ " + cmd;
+  terminal.insertBefore(response, form);
+  form.submit();
+});
+
+terminal.addEventListener("click", () => input.focus());
+
+input.focus();
+</script>
+</body>
+</html>
